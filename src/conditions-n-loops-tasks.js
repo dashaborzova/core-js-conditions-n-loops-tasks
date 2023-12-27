@@ -84,8 +84,17 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a === b && c !== 0 && a + b > c) {
+    return true;
+  }
+  if (a === c && b !== 0 && a + c > b) {
+    return true;
+  }
+  if (b === c && a !== 0 && b + c > a) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -102,8 +111,29 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  if (num < 1) {
+    return '';
+  }
+  if (num >= 40) {
+    return `XL${convertToRomanNumerals(num - 40)}`;
+  }
+  if (num >= 10) {
+    return `X${convertToRomanNumerals(num - 10)}`;
+  }
+  if (num >= 9) {
+    return `IX${convertToRomanNumerals(num - 9)}`;
+  }
+  if (num >= 5) {
+    return `V${convertToRomanNumerals(num - 5)}`;
+  }
+  if (num >= 4) {
+    return `IV${convertToRomanNumerals(num - 4)}`;
+  }
+  if (num >= 1) {
+    return `I${convertToRomanNumerals(num - 1)}`;
+  }
+  return 'Incorrect numeral';
 }
 
 /**
@@ -123,6 +153,33 @@ function convertToRomanNumerals(/* num */) {
  */
 function convertNumberToString(/* numberStr */) {
   throw new Error('Not implemented');
+  // let result = '';
+  // const number = numberStr.split('');
+  // const pairs = [
+  //   '0:zero',
+  //   '1:one',
+  //   '2:two',
+  //   '3:three',
+  //   '4:four',
+  //   '5:five',
+  //   '6:six',
+  //   '7:seven',
+  //   '8:eight',
+  //   '9:nine',
+  //   '.:point',
+  //   ',:point',
+  //   '-:minus',
+  // ];
+
+  // for (let i = 0; i < number.length; i+=1) {
+  //   for (item of pairs) {
+  //     const splitPairs = item.split(':');
+  //     if (number[i] === splitPairs[0]) {
+  //       result += `${splitPairs[1]} `;
+  //     }
+  //   }
+  // }
+  // return result;
 }
 
 /**
@@ -137,8 +194,16 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const j = str.length - 1;
+  for (let i = 0; i < j / 2; i += 1) {
+    const x = str[i];
+    const y = str[j - i];
+    if (x !== y) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
@@ -155,8 +220,13 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (letter === str[i]) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 /**
@@ -174,8 +244,16 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  const d = `${digit}`;
+  const n = `${num}`;
+
+  for (let i = 0; i < n.length; i += 1) {
+    if (n[i] === d) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
