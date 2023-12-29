@@ -62,8 +62,14 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  if (queen.x === king.x) return true;
+
+  if (queen.y === king.y) return true;
+
+  if (Math.abs(queen.x - king.x) === Math.abs(queen.y - king.y)) return true;
+
+  return false;
 }
 
 /**
@@ -151,35 +157,46 @@ function convertToRomanNumerals(num) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
-  // let result = '';
-  // const number = numberStr.split('');
-  // const pairs = [
-  //   '0:zero',
-  //   '1:one',
-  //   '2:two',
-  //   '3:three',
-  //   '4:four',
-  //   '5:five',
-  //   '6:six',
-  //   '7:seven',
-  //   '8:eight',
-  //   '9:nine',
-  //   '.:point',
-  //   ',:point',
-  //   '-:minus',
-  // ];
+function convertNumberToString(numberStr) {
+  let result = '';
+  const number = numberStr.split('');
+  const pairs = [
+    '0',
+    'zero',
+    '1',
+    'one',
+    '2',
+    'two',
+    '3',
+    'three',
+    '4',
+    'four',
+    '5',
+    'five',
+    '6',
+    'six',
+    '7',
+    'seven',
+    '8',
+    'eight',
+    '9',
+    'nine',
+    '.',
+    'point',
+    ',',
+    'point',
+    '-',
+    'minus',
+  ];
 
-  // for (let i = 0; i < number.length; i+=1) {
-  //   for (item of pairs) {
-  //     const splitPairs = item.split(':');
-  //     if (number[i] === splitPairs[0]) {
-  //       result += `${splitPairs[1]} `;
-  //     }
-  //   }
-  // }
-  // return result;
+  for (let i = 0; i < number.length; i += 1) {
+    for (let j = 0; j < pairs.length; j += 1) {
+      if (number[i] === pairs[j]) {
+        result += `${pairs[j + 1]} `;
+      }
+    }
+  }
+  return `${result}`;
 }
 
 /**
@@ -269,8 +286,23 @@ function isContainNumber(num, digit) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  for (let i = 1; i < arr.length; i += 1) {
+    let leftSum = 0;
+    for (let j = i - 1; j >= 0; j -= 1) {
+      leftSum += arr[j];
+    }
+
+    let rightSum = 0;
+    for (let k = i + 1; k < arr.length; k += 1) {
+      rightSum += arr[k];
+    }
+
+    if (leftSum === rightSum) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 /**
@@ -352,9 +384,7 @@ function sortByAsc(/* arr */) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
-}
+function shuffleChar(/* str, iterations */) {}
 
 /**
  * Returns the nearest largest integer consisting of the digits of the given positive integer.
@@ -373,9 +403,7 @@ function shuffleChar(/* str, iterations */) {
  * @param {number} number The source number
  * @returns {number} The nearest larger number, or original number if none exists.
  */
-function getNearestBigger(/* number */) {
-  throw new Error('Not implemented');
-}
+function getNearestBigger(/* number */) {}
 
 module.exports = {
   isPositive,
